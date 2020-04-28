@@ -6,12 +6,39 @@ import Login from '@/views/login/index'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
+/**
+ * constantRoutes
+ * a base page that dose not have permission requirements
+ * all roles can be accessed
+ */
+
+ export const constantRoutes = [
     {
       path: '/',
       name: 'Login',
       component: Login
     }
-  ]
+ ]
+
+// export default new Router({
+//   routes: [
+//     {
+//       path: '/',
+//       name: 'Login',
+//       component: Login
+//     }
+//   ]
+// })
+const createRouter = () => new Router({
+  scrollBehavior: () => ({y: 0}),
+  routes: constantRoutes
 })
+
+const router = createRouter()
+
+export function resetRouter () {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
+
+export default router
