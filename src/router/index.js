@@ -20,15 +20,13 @@ Vue.use(Router)
     }
  ]
 
-// export default new Router({
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'Login',
-//       component: Login
-//     }
-//   ]
-// })
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+
+export const asyneRoutes = []
+
 const createRouter = () => new Router({
   scrollBehavior: () => ({y: 0}),
   routes: constantRoutes

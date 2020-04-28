@@ -91,7 +91,8 @@ export default {
                 username: '账号',
                 password: '密码'
             },
-            showDialog: false
+            showDialog: false,
+            redirect: undefined
         }
   },
   created () {
@@ -111,6 +112,13 @@ export default {
           this.$refs.loginForm.validate(valid => {
               if (valid) {
                   this.loading = true
+                //   dispatch含有异步操作，例如想后台提交数据，写法
+                // this.$store.dispatch('mutations方法名', 值)
+                this.$store.dispatch('user/login', this.loginForm)
+                    .then(() => {
+                        this.$router.push({path: this.redirect || '/'})
+                        this.loading = false
+                    })
               } else {
                   console.log('error submit!!')
                   return false
