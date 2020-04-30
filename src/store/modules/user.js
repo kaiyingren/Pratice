@@ -42,7 +42,7 @@ const actions = {
     // user login
     login ({commit}, userInfo) {
         const {username, password} = userInfo
-        console.log(userInfo)
+        // console.log(userInfo)
         // 异步操作
         return new Promise((resolve, reject) => {
             login({username: username.trim(), password: password}).then(response => {

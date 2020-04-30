@@ -15,11 +15,18 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import '@/styles/index.scss' // global css
 
-Vue.config.productionTip = false
+import './permission' // permission control
+
+import { mockXHR } from '../mock'
+
+// mock api in github page site build
+if (process.env.NOED_ENV === 'production') { mockXHR() }
 
 Vue.use(ElementUI, {
   size: Cookies.get('size') || 'medium' // set element-ui default size
 })
+
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

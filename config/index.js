@@ -4,6 +4,11 @@
 
 const path = require('path')
 
+const pkg = require('../package.json')
+const name = pkg.name || 'vueDemo' // page title
+const port = 8989; // dev port
+
+
 module.exports = {
   dev: {
 
