@@ -1,6 +1,6 @@
 import Mock from 'mockjs'
 import mocks from './mocks'
-// import { param2Obj } from '../src/utils'
+import { param2Obj } from '../src/utils'
 
 const MOCK_API_BASE = '/mock'
 
@@ -38,3 +38,17 @@ export function mockXHR() {
          Mock.mock(new RegExp(i.url), i.type || 'get', XHR2ExpressreqWrap(i.response))
      }
  }
+
+ const responseFake = (url, type, respond) => {
+     return {
+         url: new RegExp(`${MOCK_API_BASE}${url}`),
+         type: type || 'get',
+         respond (req, res) {
+             res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
+         }
+     }
+ }
+
+ export default mocks.map (route => {
+     return responseFake(route.url, route.type, route.response)
+ })

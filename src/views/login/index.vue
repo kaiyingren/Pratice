@@ -171,7 +171,7 @@ $cursor: #fff;
             padding: 12px 5px 12px 15px;
             color: $light_gray;
             height: 47px;
-            cater-color: $cursor;
+            // cater-color: $cursor;
 
             &:-webkit-autofill {
                 box-shadow: 0 0 0px 1000px $bg inset !important;
