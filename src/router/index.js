@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Login from '@/views/login/index'
-// import a from '@/views/login/a'
+// import Login from '@/views/login/index'
+import Layout from '@/layout'
 
 Vue.use(Router)
 
@@ -13,10 +13,21 @@ Vue.use(Router)
  */
 
  export const constantRoutes = [
+   {
+     path: '/redirect', // 记录用户上次登录停留界面路径 重新登录后还是进入上次页面
+     component: Layout,
+     hidden: true,
+     children: [
+       {
+         path: 'redeirect/:path*',
+         component: () => import('@/views/redirect/index') // 路由懒加载
+       }
+     ]
+   },
     {
-      path: '/',
+      path: '/login',
       name: 'Login',
-      component: Login
+      component: () => import('@/views/login/index')
     }
  ]
 

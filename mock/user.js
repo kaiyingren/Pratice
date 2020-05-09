@@ -31,6 +31,8 @@ export default [
             const {username} = config.body
             const token = tokens[username]
 
+            console.log(username, token)
+
             // mock error
             if (!token) {
                 return {

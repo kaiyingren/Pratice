@@ -22,6 +22,12 @@ import { mockXHR } from '../mock'
 // mock api in github page site build
 if (process.env.NOED_ENV === 'production') { mockXHR() }
 
+if (process.env.NODE_ENV === 'development') {
+  // alert('开发环境')
+} else {
+  // alert('生产环境')
+}
+
 Vue.use(ElementUI, {
   size: Cookies.get('size') || 'medium' // set element-ui default size
 })

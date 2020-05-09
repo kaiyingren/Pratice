@@ -96,8 +96,8 @@ export default {
         }
   },
   created () {
-      console.log('$router：VueRouter的实例：', this.$router)
-      console.log('$route：处于激活状态(当前页面)的路由：', this.$route)
+    //   console.log('$router：VueRouter的实例：', this.$router)
+    //   console.log('$route：处于激活状态(当前页面)的路由：', this.$route)
   },
   mounted () {
       if (this.$refs.username === '') {
@@ -108,7 +108,7 @@ export default {
   },
   methods: {
       handleLogin () {
-          console.log('handleLogin')
+        //   console.log('handleLogin')
           this.$refs.loginForm.validate(valid => {
               if (valid) {
                   this.loading = true

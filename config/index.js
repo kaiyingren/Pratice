@@ -4,7 +4,7 @@
 
 const path = require('path')
 
-const pkg = require('../package.json')
+const pkg = require('../package.json') // ky 以下两段代码为后期添加
 const name = pkg.name || 'vueDemo' // page title
 const port = 8989; // dev port
 
@@ -15,7 +15,30 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://localhost:${port}/mock`,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    },
+
+    after(app) {
+      require('@babel/register')
+      const bodyParser = require('body-parser')
+
+      app.use(bodyParser.json())
+      app.use(bodyParser.urlencoded({
+        extended: true
+      }))
+
+      const { default: mocks } = require('../mock')
+      for (const mock of mocks) {
+        app[mock.type](mock.url, mock.response)
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
