@@ -20,7 +20,8 @@ import './permission' // permission control
 import { mockXHR } from '../mock'
 
 // mock api in github page site build
-if (process.env.NOED_ENV === 'production') { mockXHR() }
+// if (process.env.NOED_ENV === 'production') { mockXHR() }
+mockXHR()
 
 if (process.env.NODE_ENV === 'development') {
   // alert('开发环境')

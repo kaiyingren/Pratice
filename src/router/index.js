@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// import Login from '@/views/login/index'
 import Layout from '@/layout'
 
 Vue.use(Router)
@@ -20,14 +19,19 @@ Vue.use(Router)
      children: [
        {
          path: 'redeirect/:path*',
-         component: () => import('@/views/redirect/index') // 路由懒加载
+         component: () => import('@/views/redirect/index') // 路由懒加载 属于SPA优化方式之一
        }
      ]
    },
+    // {
+    //   path: '/login',
+    //   name: 'Login',
+    //   component: () => import('@/views/login/index')
+    // },
     {
-      path: '/login',
-      name: 'Login',
-      component: () => import('@/views/login/index')
+      path: '/404',
+      component: () => import('@/views/errorPage/404'),
+      hidden: true
     }
  ]
 
@@ -36,7 +40,7 @@ Vue.use(Router)
  * the routes that need to be dynamically loaded based on user roles
  */
 
-export const asyneRoutes = []
+export const asyncRoutes = []
 
 const createRouter = () => new Router({
   scrollBehavior: () => ({y: 0}),

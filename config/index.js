@@ -16,29 +16,32 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      [process.env.VUE_APP_BASE_API]: {
-        target: `http://localhost:${port}/mock`,
-        changeOrigin: true,
-        pathRewrite: {
-          ['^' + process.env.VUE_APP_BASE_API]: ''
-        }
-      }
+      //  下方注释部分为mock代码 但是好像没用
+      //  在main.js中直接调用mockXHR()即可
+
+      // [process.env.VUE_APP_BASE_API]: {
+      //   target: `http://localhost:${port}/mock`,
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     ['^' + process.env.VUE_APP_BASE_API]: ''
+      //   }
+      // }
     },
 
-    after(app) {
-      require('@babel/register')
-      const bodyParser = require('body-parser')
+    // after(app) {
+    //   require('@babel/register')
+    //   const bodyParser = require('body-parser')
 
-      app.use(bodyParser.json())
-      app.use(bodyParser.urlencoded({
-        extended: true
-      }))
+    //   app.use(bodyParser.json())
+    //   app.use(bodyParser.urlencoded({
+    //     extended: true
+    //   }))
 
-      const { default: mocks } = require('../mock')
-      for (const mock of mocks) {
-        app[mock.type](mock.url, mock.response)
-      }
-    },
+    //   const { default: mocks } = require('../mock')
+    //   for (const mock of mocks) {
+    //     app[mock.type](mock.url, mock.response)
+    //   }
+    // },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

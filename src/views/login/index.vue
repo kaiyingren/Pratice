@@ -133,7 +133,7 @@ export default {
     //   复用组件时，想对路由参数的变化作出相应，可以watch(检测变化)$route对象
       $route: {
           handler: function (route) {
-              console.log(route)
+            //   console.log(route)
           }
       }
     //   除了上面的方式，也可以使用2.2中引入的beforeRouteUpdate 导航守卫

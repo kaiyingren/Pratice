@@ -7,8 +7,10 @@ import { getToken } from '@/utils/auth' // get token from cookie
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login', 'auth-redirect'] // no redirect whitelist
+// const whiteList = ['/login', 'auth-redirect'] // no redirect whitelist
+const whiteList = ['/404', 'auth-redirect'] // no redirect whitelist
 
+// 使用router.beforeEach注册一个全局前置路由
 router.beforeEach(async (to, from, next) => {
     // start progress bar
     NProgress.start()

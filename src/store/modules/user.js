@@ -114,6 +114,7 @@ const actions = {
     // Dynamically modify permissions
     changeRoles ({commit, dispatch}, role) {
         return new Promise(async resolve => {
+            console.log('changeRoles')
             const token = role + '-token'
             commit('SET_TOKEN', token) // 重设token
             setToken(token)
