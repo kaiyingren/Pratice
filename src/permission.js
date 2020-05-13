@@ -7,8 +7,8 @@ import { getToken } from '@/utils/auth' // get token from cookie
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-// const whiteList = ['/login', 'auth-redirect'] // no redirect whitelist
-const whiteList = ['/404', 'auth-redirect'] // no redirect whitelist
+const whiteList = ['/login', 'auth-redirect'] // no redirect whitelist
+// const whiteList = ['/401', 'auth-redirect']
 
 // 使用router.beforeEach注册一个全局前置路由
 router.beforeEach(async (to, from, next) => {
@@ -19,6 +19,8 @@ router.beforeEach(async (to, from, next) => {
     const hasToken = getToken()
 
     if (hasToken) {
+        console.log('hasToken:', hasToken)
+        console.log('to.path', to.path)
         if (to.path === '/login') {
             // if is logged in, redirect to the home page
             next({ path: '/' })
@@ -33,8 +35,10 @@ router.beforeEach(async (to, from, next) => {
                     // get user info
                     // note: roles must be a object array ! such as: ['admin'] or ['developer', 'editor']
                     const { roles } = await store.dispatch('user/getInfo')
+                    // console.log('roles:', roles)
                     // generate accessible routes map based on roles
                     const { accessRoutes } = await store.dispatch('permission/generateRoutes', roles)
+                    console.log('accessRoutes:', accessRoutes)
                     // dynamically add accessible routes
                     router.addRoutes(accessRoutes)
                     // hack method to ensure that addRoutes is complete

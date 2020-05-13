@@ -51,6 +51,7 @@ const actions = {
                 commit('SET_TOKEN', data.token)
                 // 根据后台返回的token 重设token
                 setToken(data.token)
+                console.log('data.token:', data.token)
                 resolve()
             }).catch(error => {
                 reject(new Error(error))
