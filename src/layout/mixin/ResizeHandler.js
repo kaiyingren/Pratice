@@ -5,19 +5,19 @@ const WIDTH = 992 // refer to Bootstrap's responsive design
 
 export default {
     watch: {
-        $route(route) {
+        $route (route) {
             if (this.device === 'mobile' && this.sidebar.opened) {
                 store.dispatch('app/closeSideBar', { withoutAnimation: false })
             }
         }
     },
-    beforeMount() {
+    beforeMount () {
         window.addEventListener('resize', this.resizeHandler)
     },
-    beforeDestroy() {
+    beforeDestroy () {
         window.removeEventListener('resize', this.resizeHandler)
     },
-    mounted() {
+    mounted () {
         const isMobile = this.isMobile()
         if (isMobile) {
             store.dispatch('app/toggleDevice', 'mobile')
@@ -32,7 +32,7 @@ export default {
         },
         resizeHandler: () => {
             // 如果页面处于显示状态
-            if(!document.hidden) {
+            if (!document.hidden) {
                 const isMobile = this.isMobile()
                 store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
                 if (isMobile) {
@@ -40,5 +40,5 @@ export default {
                 }
             }
         }
-    },
+    }
 }
