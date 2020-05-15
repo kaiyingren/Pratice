@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+// Layout
 import Layout from '@/layout'
 
 Vue.use(Router)
@@ -37,6 +38,19 @@ Vue.use(Router)
       path: '/401',
       component: () => import('@/views/errorPage/401'),
       hidden: true
+    },
+    {
+      path: '',
+      component: Layout,
+      redirect: 'dashboard',
+      children: [
+        {
+          path: 'dashboard',
+          component: () => import('@/views/dashboard/index'),
+          name: 'Dashboard',
+          meta: {title: 'dashboard', icon: 'dashboard', noCache: true, affix: true}
+        }
+      ]
     }
  ]
 
