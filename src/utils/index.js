@@ -9,6 +9,7 @@ export function param2Obj (url) {
     )
  }
 
+//  防抖
 export function debounce (func, wait, immediate) {
     let timeout, args, context, timestamp, result
 
