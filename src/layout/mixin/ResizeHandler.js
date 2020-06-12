@@ -33,7 +33,10 @@ export default {
         resizeHandler: () => {
             // 如果页面处于显示状态
             if (!document.hidden) {
-                const isMobile = this.isMobile()
+                // console.log(this.a.methods.isMobile())
+                const isMobile = this.a.methods.isMobile()
+                // 下面的写法会报错？？？为什么访问不到上面的isMobile()方法呢
+                // const isMobile = this.isMobile()
                 store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
                 if (isMobile) {
                     store.dispatch('app/closeSideBar', { withoutAnimation: true })

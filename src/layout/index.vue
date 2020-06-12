@@ -8,7 +8,18 @@
       <!-- 是否固定头部 -->
       <div :class="{'fixed-header': fixedHeader}">
         <!-- 导航栏 -->
-        <navbar />
+        <navbar>
+          <p>----this is navBar slot----默认</p>
+          <template v-slot:slot1 :user='user'>
+            <p style="color: red; margin: 0 20px;">this is slot1-<span style="color: green;">{{user.lastName}}{{user.firstName}}</span></p>
+          </template>
+          <template v-slot:slot2>
+            <p>this is slot2</p>
+          </template>
+          <template v-slot:slot3 v-slot:default="user">
+            <p>这是接受插槽的内容：{{user}}</p>
+          </template>
+        </navbar>
         <!-- 根据设置确定是否显示tag -->
         <tags-view v-if="needTagsView"/>
       </div>
@@ -32,6 +43,10 @@ export default {
   name: 'Layout',
   data () {
     return {
+      user: {
+        firstName: 'kaiying',
+        lastName: 'ren'
+      }
     }
   },
   created () {},
